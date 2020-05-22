@@ -1,39 +1,39 @@
-<img src="https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png" style="margin: 0;">
+# Mutty Maze
 
-Welcome USER_NAME,
+Help our friendly mutt through the maze to bark at its good friend postie. 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project.
+This is a maze for the demonstration of the power of JavaScript in manipulating the DOM.
 
-## Gitpod Reminders
+## UX
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+### User Stories
 
-`python3 -m http.server`
+* As a casual user, I want a simple to play game, so that I am entertained.
+* As a casual user, I want the game to be cute and quirky, so that I am amused.
+* As a repeat user, I want the game to become more challenging, so that I feel I am developing
+* As a repeat user, I want to find Secrets or “Easter Eggs”, so that I feel I am getting more out of the game.
+* As a user, I want to be able to share my success at the game on social media, so that my friends can see how well I did at the game.
+* As a user, I want to be able to contact the developer, so that I can gush shamelessly at their skill; or even to provide constructive criticism or find out about other ideas the developer has.
+* As the owner, I want all the features of the casual and repeat user, for the same reasons.
+* As the owner, I want the users to share their successes on social media, so that more people have access to my game.
+* As the owner, I want the user to be able to contact the owner, so that I receive constructive criticism that helps me develop and find out what users want for future developments.
 
-A blue button should appear to click: *Make Public*,
+## features
 
-Another blue button should appear to click: *Open Browser*.
+### Existing features
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+### Features Left to inplement
 
-A blue button should appear to click: *Make Public*,
+## Technologies Used
 
-Another blue button should appear to click: *Open Browser*.
+## Testing
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the backend lessons.
+## Deployment
 
-## Updates Since The Instructional Video
+## Credits
 
-We continually tweak and adjust this template to help give you the best experience. Here are the updates since the original video was made:
+### Content 
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+### Media
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
-
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
-
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
-
---------
-
-Happy coding!
+### Acknowledgements
