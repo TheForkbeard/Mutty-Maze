@@ -54,7 +54,7 @@
 
 
 
-            let mutty = null;
+            // let mutty = null;
 
             // forgot to include the sprite objects
             let sprite = {
@@ -65,8 +65,9 @@
             x: 0,
             y: 0,
             height: 64,
-            width: 64
-        };
+            width: 64,
+            visible: true
+            };
 
             const ROWS = map.length;
             const COLUMNS = map[0].length;
@@ -82,19 +83,13 @@
             let assetsToLoad = [];
             let assetsLoaded =0;
 
-            / load the tilesheet image
+            // load the tilesheet image
             let image = new image();
             image.addEventListener("load", loadHandler, false);
             image.src = "assets/images/mutty-tile-2.png";
             assetsToLoad.push(image);
 
-            
-
-            // and call the render function
-            render();
-
-            // to test the rendering I will contstruct basic loadHandler, buildMap and render functions
-            
+            // to test the rendering I will contstruct basic loadHandler, buildMap and render functions            
             function loadHandler() {
                 assetsLoaded++;
                 if(assetsLoaded === assetsToLoad.length) {
@@ -104,6 +99,9 @@
                     // this is to test if my idea will render calling the buildmap function twice to be able to render it
                     buildMap(map);
                     buildMap(gameObjects);
+
+                    // and call the render function
+                    render();                    
                 }
             }
 
@@ -138,7 +136,7 @@
                                     break;
                                 
                                 case MUTTY:
-                                    mutty = Object.create(sprite);
+                                    let mutty = Object.create(sprite);
                                     mutty.sourceX = tilesheetX;
                                     mutty.sourceY = tilesheetY;
                                     mutty.x = column * SIZE;
@@ -152,11 +150,24 @@
             }
 
             // thats the map built need to render it with a render function next
-            
-
-
-        }());
-
+            function render(event) {
+                drawingSurface.clearRect(0, 0, canvas.width, canvas.height);
+                for(let i = 0; i , sprites.length; i++) {
+                    let sprite = sprites[i];
+                    drawingSurface.drawImage(
+                        image,
+                        sprite.sourceX,
+                        sprite.sourceY,
+                        sprite.sourceWidth,
+                        sprite.sourceHeight,
+                        sprite.x,
+                        sprite.y,
+                        sprite.width,
+                        sprite.height
+                    );
+                }
+            }
+        })
 
     </script>
 </body>
