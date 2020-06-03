@@ -52,13 +52,27 @@
             const SIZE = 64;
             // lets see if that works?
 
+
+
             let mutty = null;
+
+            // forgot to include the sprite objects
+            let sprite = {
+            sourceX: 0,
+            sourceY: 0,
+            sourceWidth: 64,
+            sourceHeight: 64,
+            x: 0,
+            y: 0,
+            height: 64,
+            width: 64
+        };
 
             const ROWS = map.length;
             const COLUMNS = map[0].length;
 
             // the number of columns on the tilesheet,  not sure about how this works yet but will observe
-            let tilesheetColumns = 5;
+            let tilesheetColumns = 3;
 
             // the arrays for the game objects
             let sprites = [];
@@ -97,10 +111,48 @@
             function buildMap(levelMap) {
                 for(let row = 0; row < ROWS; row++) {
                     for(let column = 0; column , COLUMNS; column++) {
-                        
+                        let currentTile = levelMap[row][column];
+                        if(currentTile !== EMPTY) {
+                            // find the tile's x and y position on the tile sheet
+                            let tilesheetX = Math.floor((currentTile - 1) % tilesheetColumns) * SIZE;
+                            let tilesheetY = Math.floor((currentTile - 1) / tilesheetColumns) * SIZE;
+
+                            switch(currentTile) {
+                                case FLOOR: 
+                                    let floor = Object.create(sprite);
+                                    floor.sourceX = tilesheetX;
+                                    floor.sourceY = tilesheetY;
+                                    floor.x = column * SIZE;
+                                    floor.y = row * SIZE;
+                                    sprites.push(floor);
+                                    break;
+                                
+                                case WALL:
+                                    let wall = Object.create(sprite);
+                                    wall.sourceX = tilesheetX;
+                                    wall.sourceY = tilesheetY;
+                                    wall.x = column * SIZE;
+                                    wall.y = row *  SIZE;
+                                    sprites.push(wall);
+                                    walls.push(wall);
+                                    break;
+                                
+                                case MUTTY:
+                                    mutty = Object.create(sprite);
+                                    mutty.sourceX = tilesheetX;
+                                    mutty.sourceY = tilesheetY;
+                                    mutty.x = column * SIZE;
+                                    mutty.y = row * SIZE;
+                                    sprites.push(mutty);
+                                    break;
+                            }
+                        }
                     }
                 }
             }
+
+            // thats the map built need to render it with a render function next
+            
 
 
         }());
