@@ -10,7 +10,9 @@
     <header>
         <h1>Mutty Maze</h1>
     </header>
-    <div id="view-port"></div>
+    <div id="view-port">
+        <canvas></canvas>
+    </div>
     <div class="controls"></div>
 
     <script>
@@ -84,12 +86,26 @@
             let assetsLoaded =0;
 
             // load the tilesheet image
-            let image = new image();
+            let image = new Image();
             image.addEventListener("load", loadHandler, false);
             image.src = "assets/images/mutty-tile-2.png";
             assetsToLoad.push(image);
 
-            // to test the rendering I will contstruct basic loadHandler, buildMap and render functions            
+            // to test the rendering I will contstruct basic loadHandler, buildMap and render functions.
+            // This did not work so I am adapting the update from the book to the update function.
+            
+            //Start the game animation loop
+            update();
+
+            function update()
+            { 
+                //The animation loop
+                setTimeout(update, 16);
+
+                // and call the render function
+                render();  
+            }
+
             function loadHandler() {
                 assetsLoaded++;
                 if(assetsLoaded === assetsToLoad.length) {
@@ -100,8 +116,7 @@
                     buildMap(map);
                     buildMap(gameObjects);
 
-                    // and call the render function
-                    render();                    
+                                      
                 }
             }
 
@@ -167,7 +182,7 @@
                     );
                 }
             }
-        })
+        }())
 
     </script>
 </body>
