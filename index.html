@@ -94,13 +94,44 @@
             // to test the rendering I will contstruct basic loadHandler, buildMap and render functions.
             // This did not work so I am adapting the update from the book to the update function.
             
+            //Game states
+            const LOADING = 0;
+            const BUILD_MAP = 1;
+            //const PLAYING = 2;
+            //const OVER = 3;
+            let gameState = LOADING;
+
             //Start the game animation loop
             update();
 
             function update()
             { 
                 //The animation loop
-                setTimeout(update, 16);
+                //setTimeout(update, 16);
+                requestAnimationFrame(update, canvas);
+
+                //Change what the game is doing based on the game state
+                    switch(gameState)
+                        {
+                            case LOADING:
+                                console.log("loading...");
+                                break;
+      
+                            case BUILD_MAP:
+                                buildMap(map);
+                                buildMap(gameObjects);
+                                //createOtherObjects();
+                                //gameState = PLAYING;
+                                break;
+    /*
+                            case PLAYING:
+                                playGame();
+                                break;
+    
+                            case OVER:
+                                endGame();
+                                break;*/
+                        }
 
                 // and call the render function
                 render();  
@@ -113,8 +144,10 @@
                     image.removeEventListener("load", loadHandler, false);
 
                     // this is to test if my idea will render calling the buildmap function twice to be able to render it
-                    buildMap(map);
-                    buildMap(gameObjects);
+                    //that didn't works so back to basics
+                    //Build the level 
+                    gameState = BUILD_MAP;
+                    
 
                                       
                 }
@@ -167,20 +200,26 @@
             // thats the map built need to render it with a render function next
             function render(event) {
                 drawingSurface.clearRect(0, 0, canvas.width, canvas.height);
-                for(let i = 0; i , sprites.length; i++) {
-                    let sprite = sprites[i];
-                    drawingSurface.drawImage(
-                        image,
-                        sprite.sourceX,
-                        sprite.sourceY,
-                        sprite.sourceWidth,
-                        sprite.sourceHeight,
-                        sprite.x,
-                        sprite.y,
-                        sprite.width,
-                        sprite.height
-                    );
-                }
+                
+                //Display the sprites
+                    if(sprites.length !== 0)
+                        {
+                            for(var i = 0; i < sprites.length; i++)
+	                            {
+	                                var sprite = sprites[i];
+	                                if(sprite.visible)
+	                                    {
+                                            drawingSurface.drawImage
+                                                (
+                                                    image, 
+                                                    sprite.sourceX, sprite.sourceY, 
+                                                    sprite.sourceWidth, sprite.sourceHeight,
+                                                    Math.floor(sprite.x), Math.floor(sprite.y), 
+                                                    sprite.width, sprite.height
+                                                ); 
+                                        }
+                                }
+                        }
             }
         }())
 
