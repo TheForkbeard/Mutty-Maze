@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mutty Maze</title>
-</head>
-<body>
-    <header>
-        <h1>Mutty Maze</h1>
-    </header>
-    <div id="view-port">
-        <canvas width="448" height="448" style="border: 1px dashed black"></canvas>
-    </div>
-    <div class="controls"></div>
-
-    <script>
-
-        (function() {
+(function() {
             // canvas variables
             let canvas = document.querySelector("canvas");
             let drawingSurface = canvas.getContext("2d");
@@ -219,7 +200,3 @@
                         }
             }
         }())
-
-    </script>
-</body>
-</html>
