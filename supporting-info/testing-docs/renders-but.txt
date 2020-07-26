@@ -1,0 +1,98 @@
+(function() {
+            //going to try to use the turn based system instead because I got that to renderS
+            // canvas variables will see if I can incorporate cavas when I succeed in rendering
+            //let canvas = document.querySelector("canvas");
+            //let drawingSurface = canvas.getContext("2d");
+
+            let stage = document.querySelector("#stage");
+
+            // game map variable
+            let map = [
+                [2, 2, 2, 2, 2, 2, 2],
+                [2, 1, 1, 1, 2, 1, 2],
+                [2, 1, 2, 1, 2, 1, 2],
+                [2, 1, 2, 1, 1, 1, 2],
+                [2, 1, 2, 2, 2, 1, 2],
+                [2, 1, 1, 1, 2, 1, 2],
+                [2, 2, 2, 2, 2, 2, 2]
+            ];
+
+            // game object variable
+            let gameObjects = [
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 3, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0]
+            ];
+
+            //map codes
+            const EMPTY = 0;
+            const FLOOR  = 1;
+            const WALL = 2;
+            const MUTTY = 3;
+
+            // the size of each tile cell, this is what I need to be able to adapt make this work
+            const SIZE = 64;
+            
+            // The number of rows and columns
+            let ROWS = map.length;
+            let COLUMNS = map[0].length;
+
+            let muttyRow;
+            let muttyColumn;
+
+            for(let row = 0; row < ROWS; row++){
+                for(let column = 0; column < COLUMNS; column++){
+                    if(gameObjects[row][column] === MUTTY){
+                        muttyRow = row;
+                        muttyColumn = column;
+                    }
+                }
+            }
+
+            render();
+
+            function render() {
+                if(stage.hasChildNodes()){
+                    for(let i = 0; i < ROWS * COLUMNS; i++){
+                        stage.removeChild(stage.firstChild);
+                    }
+                }
+
+                //Render the map by looping through the map arrays
+                for(let row = 0; row < ROWS; row++){
+                    for(let column = 0; column < COLUMNS; column++){
+                        //Creat an image tab called cell
+                        let cell = document.createElement("img");
+                        //Set it's CSS class to "cell"
+                        cell.setAttribute("class", "cell");
+                        //Add the img tag to the <div id="stage"> tag
+                        stage.appendChild(cell);
+
+                        //Find the correct image for the cell
+                        switch(map[row][column]){
+                            case FLOOR:
+                                cell.src = "assets/images/maze-floor-prototype.png";
+                                break;
+                            case WALL:
+                                cell.src = "assets/images/maze-wall-prototype.png";
+                                break;
+                            
+                        }
+
+                        //Add Mutty from the gameObjects array
+                        switch(gameObjects[row][column]){
+                            case MUTTY:
+                                cell.src = "assets/images/mutty-prototype.png";
+                                break;
+                        }
+
+                        //position the cell
+                        cell.style.top = row * SIZE + "px";
+                        cell.style.left = column * SIZE + "px";
+                    }
+                }
+            }
