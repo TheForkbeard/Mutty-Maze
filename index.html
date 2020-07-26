@@ -71,14 +71,30 @@
 
             // forgot to include the sprite objects
             let spriteObject = {
-            sourceX: 0,
-            sourceY: 0,
-            sourceWidth: 64,
-            sourceHeight: 64,
-            x: 0,
-            y: 0,
-            height: 64,
-            width: 64,
+                sourceX: 0,
+                sourceY: 0,
+                sourceWidth: 64,
+                sourceHeight: 64,
+                height: 64,
+                width: 64,
+                x: 0,
+                y: 0,
+                vx: 0;
+                vy: 0;
+
+                //Getters
+                centerX: function(){
+                    return this.x + (this.width / 2);
+                },
+                centerY: function(){
+                    return this.y + (this.height / 2);
+                },
+                halfWidth: function(){
+                    return this.width / 2;
+                },
+                halfHeight: function(){
+                    return this.height / 2;
+                },
             };
 
             const ROWS = map.length;
@@ -128,16 +144,16 @@
   
                 //The camera's inner scroll boundaries
                 rightInnerBoundary: function(){
-                    return this.x + (this.width / 1) + (this.width / 2);
+                    return this.x + (this.width / 2) + (this.width / 4);
                 },
                 leftInnerBoundary: function(){
-                    return this.x + (this.width / 1) - (this.width / 2);
+                    return this.x + (this.width / 2) - (this.width / 4);
                 },
                 topInnerBoundary: function(){
-                    return this.y + (this.height / 1) - (this.height / 2);
+                    return this.y + (this.height / 2) - (this.height / 4);
                 },
                 bottomInnerBoundary: function(){
-                    return this.y + (this.height / 1) + (this.height / 2);
+                    return this.y + (this.height / 2) + (this.height / 4);
                 }
             };
 
@@ -174,7 +190,7 @@
 	    
 	                case RIGHT:
 	                    moveRight = true;
-	                    break; 
+	                break; 
                 }
             }, false);
 
@@ -197,6 +213,7 @@
 	                    break; 
                 }
             }, false);
+
 
 
             //Start the game animation loop
@@ -225,7 +242,7 @@
                             case PLAYING:
                                 playGame();
                                 break;
-    /*
+                            /*
                             case OVER:
                                 endGame();
                                 break;*/
@@ -278,6 +295,7 @@
                                     wall.x = column * SIZE;
                                     wall.y = row *  SIZE;
                                     sprites.push(wall);
+                                    walls.push(wall);
                                     break;
                                 
                                 case MUTTY:
@@ -323,20 +341,28 @@
                 //Move mutty and set its screen boundaries
                 mutty.x = Math.max(64, Math.min(mutty.x + mutty.vx, gameWorld.width - mutty.width - 64)); 
                 mutty.y = Math.max(64, Math.min(mutty.y + mutty.vy, gameWorld.height - mutty.height - 64));
+                
+                //Collisions with walls
+                for(var i = 0; i < walls.length; i++){
+                    blockRectangle(mutty, walls[i]);
+                }
+
+                
                 //Scroll the camera
                 if(mutty.x < camera.leftInnerBoundary()){
-                    camera.x = Math.floor(mutty.x - (camera.width / 2));
+                    camera.x = Math.floor(mutty.x - (camera.width / 6));
                 }
                 if(mutty.y < camera.topInnerBoundary()){
-                    camera.y = Math.floor(mutty.y - (camera.height / 2));
+                    camera.y = Math.floor(mutty.y - (camera.height / 6));
                 }
                 if(mutty.x + mutty.width > camera.rightInnerBoundary()){
-                    camera.x = Math.floor(mutty.x + mutty.width - (camera.width / 2 * 3));
+                    camera.x = Math.floor(mutty.x + mutty.width - (camera.width / 6 * 3));
                 }
                 if(mutty.y + mutty.height > camera.bottomInnerBoundary()){
-                    camera.y = Math.floor(mutty.y + mutty.height - (camera.height / 2 * 3));
+                    camera.y = Math.floor(mutty.y + mutty.height - (camera.height / 6 * 3));
                 }
-  
+
+                
                 //The camera's gameWorld boundaries
                 if(camera.x < gameWorld.x){
                     camera.x = gameWorld.x;
@@ -356,26 +382,27 @@
             function render(event) {
                 drawingSurface.clearRect(0, 0, canvas.width, canvas.height);
 
-                
+                //Position the gameWorld inside the camera
+                drawingSurface.save();
+                drawingSurface.translate(-camera.x, -camera.y);
                 
                 //Display the sprites
-                    if(sprites.length !== 0)
-                        {
-                            for(let i = 0; i < sprites.length; i++)
-	                            {
-	                                let sprite = sprites[i];
-                                            drawingSurface.drawImage(
-                                                    image, 
-                                                    sprite.sourceX,
-                                                    sprite.sourceY, 
-                                                    sprite.sourceWidth, 
-                                                    sprite.sourceHeight,
-                                                    Math.floor(sprite.x), 
-                                                    Math.floor(sprite.y), 
-                                                    sprite.width, 
-                                                    sprite.height);
-                                }
+                    if(sprites.length !== 0){
+                        for(let i = 0; i < sprites.length; i++){
+	                        let sprite = sprites[i];
+                                drawingSurface.drawImage(
+                                    image, 
+                                    sprite.sourceX,
+                                    sprite.sourceY, 
+                                    sprite.sourceWidth, 
+                                    sprite.sourceHeight,
+                                    Math.floor(sprite.x), 
+                                    Math.floor(sprite.y), 
+                                    sprite.width, 
+                                    sprite.height);
                         }
+                    }
+                drawingSurface.restore();
             }
         }());
 
