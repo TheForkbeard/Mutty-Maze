@@ -1,0 +1,28 @@
+            let BTN_UP = document.getElementById("up");
+            let BTN_DOWN = document.getElementById("down");
+            let BTN_RIGHT = document.getElementById("right");
+            let BTN_LEFT = document.getElementById("left");
+
+            // First I will set button variables
+            let button = document.querySelector(".direction");
+
+            // Then add an event listener and hope that using direction id works
+            button.addEventListener("click", function(event){
+                switch(event){
+                    case BTN_UP:
+	                    moveUp = true;
+	                    break;
+	  
+	                case BTN_DOWN:
+	                    moveDown = true;
+	                    break;
+	    
+	                case BTN_LEFT:
+	                    moveLeft = true;
+	                    break;  
+	    
+	                case BTN_RIGHT:
+	                    moveRight = true;
+	                break; 
+                }
+            }, false);

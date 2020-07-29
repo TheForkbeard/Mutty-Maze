@@ -1,0 +1,29 @@
+    <div class="controls">
+        <div>
+        <button class="direction" id="up" onclick="moveup()">UP</button>
+        </div>
+        <div>
+        <button class="direction" id="left" onclick="moveleft()">LEFT</button>
+        <button class="direction" id="right" onclick="moveright()">RIGHT</button>
+        </div>
+        <div>
+        <button class="direction" id="down" onclick="movedown()">DOWN</button>
+        </div>
+    </div>
+    
+    function moveup(){
+                moveUp = true;
+            }
+
+            function movedown(){
+                moveDown = true;
+            }
+
+            function moveleft(){
+                moveLeft = true;
+            }
+
+            function moveright(){
+                moveRight = true
+            }
+
