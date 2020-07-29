@@ -26,6 +26,7 @@
         </div>
     </div>
 
+    <script src="assets/js/collision.js"></script>
     <script>
 
         (function() {
@@ -79,8 +80,8 @@
                 width: 64,
                 x: 0,
                 y: 0,
-                vx: 0;
-                vy: 0;
+                vx: 0,
+                vy: 0,
 
                 //Getters
                 centerX: function(){
@@ -343,7 +344,7 @@
                 mutty.y = Math.max(64, Math.min(mutty.y + mutty.vy, gameWorld.height - mutty.height - 64));
                 
                 //Collisions with walls
-                for(var i = 0; i < walls.length; i++){
+                for(let i = 0; i < walls.length; i++){
                     blockRectangle(mutty, walls[i]);
                 }
 
