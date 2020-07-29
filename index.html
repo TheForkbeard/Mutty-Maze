@@ -222,38 +222,46 @@
             let btnRIGHT = document.getElementById("right");
             let btnLEFT = document.getElementById("left");
 
-            btnUP.addEventListener("onmousedown", function(event){
+            btnUP.addEventListener("mousedown", function(event){
                 moveUp = true;
+                
             }, false);
 
-            btnDOWN.addEventListener("onmousedown", function(event){
-                moveDown = true;
-            }, false);
-
-            btnRIGHT.addEventListener("onmousedown", function(event){
-                moveRight = true;
-            }, false);
-
-            btnLEFT.addEventListener("onmousedown", function(event){
-                moveLeft = true;
-            }, false);
-
-            btnUP.addEventListener("onmouseup", function(event){
+            btnUP.addEventListener("mouseup", function(event){
                 moveUp = false;
+                
             }, false);
 
-            btnDOWN.addEventListener("onmouseup", function(event){
+            btnDOWN.addEventListener("mousedown", function(event){
+                moveDown = true;
+                
+            }, false);
+
+            btnDOWN.addEventListener("mouseup", function(event){
                 moveDown = false;
+                
             }, false);
 
-            btnRIGHT.addEventListener("onmouseup", function(event){
+            btnRIGHT.addEventListener("mousedown", function(event){
+                moveRight = true;
+                
+            }, false);
+
+            btnRIGHT.addEventListener("mouseup", function(event){
                 moveRight = false;
+                
             }, false);
 
-            btnLEFT.addEventListener("onmouseup", function(event){
+            btnLEFT.addEventListener("mousedown", function(event){
+                moveLeft = true;
+                
+            }, false);
+
+            btnLEFT.addEventListener("mouseup", function(event){
                 moveLeft = false;
+                
             }, false);
-
+            
 
             //Start the game animation loop
             update();

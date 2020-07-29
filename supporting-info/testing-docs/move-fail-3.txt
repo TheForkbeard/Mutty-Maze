@@ -1,0 +1,28 @@
+            //moves but won't stop 
+            
+            let btnUP = document.getElementById("up");
+            let btnDOWN = document.getElementById("down");
+            let btnRIGHT = document.getElementById("right");
+            let btnLEFT = document.getElementById("left");
+
+            
+            
+            btnUP.addEventListener("click", function(event){
+                moveUp = true;
+                
+            }, false);
+
+            btnDOWN.addEventListener("click", function(event){
+                moveDown = true;
+                
+            }, false);
+
+            btnRIGHT.addEventListener("click", function(event){
+                moveRight = true;
+                
+            }, false);
+
+            btnLEFT.addEventListener("click", function(event){
+                moveLeft = true;
+                
+            }, false);
