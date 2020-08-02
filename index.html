@@ -34,8 +34,26 @@
             let canvas = document.querySelector("canvas");
             let drawingSurface = canvas.getContext("2d");
 
-            // game map variable
-            let map = [
+            // After I managed to get the maze to display, Mutty and the camera to move and scroll;
+            // and the colision js to make the walls solid, I am now attemping to get the levels up and running.
+            // Game Map Levels
+            // Arrays to store the levelmaps and objects upon loading
+            let levelmaps = [];
+            let levelGameObjects = [];
+
+            // To get the levels to load in order
+            // A level counter
+            let levelCounter = 0;
+
+            // A level shnge counter
+            // This is from "foundation game design " that initally I will need to get the levels working but
+            // I would like a different transition between levels
+            let levelChangeTimer = 0;
+
+            
+            // game map variables
+            // level 1 is map0
+            let map0 = [
                 [2, 2, 2, 2, 2, 2, 2],
                 [2, 1, 1, 1, 2, 1, 2],
                 [2, 1, 2, 1, 2, 1, 2],
@@ -45,8 +63,12 @@
                 [2, 2, 2, 2, 2, 2, 2]
             ];
 
+            // push map0 to the levelMaps array
+            levelmaps.push(map0);
+
             // game object variable
-            let gameObjects = [
+            // level 1 objects is also 0
+            let gameObjects0 = [
                 [0, 0, 0, 0, 0, 0, 0],
                 [0, 3, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0],
@@ -55,6 +77,72 @@
                 [0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0]
             ];
+
+            //Push gameObjects0 into the levelGameObjects array
+            levelGameObjects.push(gameObjects0);
+
+            // now to add the 2 levels that I have ready
+            // level 2 will be map1
+            let map1 = [
+                [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+                [2, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 2],
+                [2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2],
+                [2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2],
+                [2, 2, 2, 2, 1, 2, 2, 2, 1, 1, 1, 2],
+                [2, 1, 1, 1, 1, 1. 1, 1, 2, 2, 2, 2],
+                [2, 1, 2, 1, 2, 2, 2, 2, 1, 1, 1, 2],
+                [2, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2],
+                [2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 1, 2],
+                [2, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 2],
+                [2, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 2]
+                [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+            ];
+
+            //Push map1 into the leveMaps array
+            levelMaps.push(map1);
+
+            // I have yet to complete gameObjects array yet so will leave this empty
+            let gameObjects1 = [];
+
+            //Push gameObjects1 into the levelGameObjects array
+            levelGameObjects.push(gameObjects1);
+
+            // Level3 will be map2
+            let map2 = [
+                [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+                [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 2],
+                [2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 2, 2],
+                [2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+                [2, 1, 2, 1, 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 2, 1, 2, 1, 2],
+                [2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2],
+                [2, 1, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 2, 1, 2],
+                [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2],
+                [2, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2, 1, 2, 2, 1, 1, 1, 2, 1, 2],
+                [2, 1, 1, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 2, 1, 2, 2, 2],
+                [2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 1, 2, 1, 1, 1, 2],
+                [2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 2, 1, 1, 2, 1, 1, 1, 2, 2, 2, 1, 2],
+                [2, 1, 2, 1, 2, 1, 2, 2, 2, 1, 2, 2, 1, 2, 2, 2, 1, 1, 1, 2, 1, 2],
+                [2, 1, 2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 1, 1, 1, 2, 2, 2, 1, 2, 1, 2],
+                [2, 1, 2, 1, 1, 1, 2, 1, 2, 1, 2, 2, 2, 2, 1, 2, 1, 1, 1, 2, 1, 2],
+                [2, 1, 2, 2, 2, 2, 2, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 2, 2, 1, 2],
+                [2, 1, 1, 1, 1, 1, 2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 1, 1, 1, 2],
+                [2, 1, 2, 2, 2, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 2, 2],
+                [2, 1, 2, 1, 1, 1, 2, 2, 2, 2, 1, 1, 1, 2, 1, 1, 1, 2, 1, 1, 1, 2],
+                [2, 1, 2, 1, 2, 2, 1, 1, 1, 2, 2, 2, 2, 2, 1, 2, 1, 2, 2, 2, 1, 2],
+                [2, 1, 2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 2],
+                [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+            ];
+
+            // push map2 into the levelMaps array
+            levelmaps.push(map2);
+
+            // once again I have yet to complete this 
+            // gameObjects map
+            let gameObjects2 = [];
+
+            //Push gameObjects2 into the levelGameObjects array
+            levelGameObjects.push(gameObjects2);
+
 
             //map codes
             const EMPTY = 0;
@@ -126,6 +214,7 @@
             const BUILD_MAP = 1;
             const PLAYING = 2;
             //const OVER = 3;
+            const LEVEL_COMPLETE = 4;
             let gameState = LOADING;
 
             //--- The gameWorld object
@@ -280,8 +369,8 @@
                                 break;
       
                             case BUILD_MAP:
-                                buildMap(map);
-                                buildMap(gameObjects);
+                                buildMap(levelmaps[levelCounter]);
+                                buildMap(levelGameObjects[levelCounter]);
                                 //createOtherObjects();
                                 gameState = PLAYING;
                                 break;
@@ -289,14 +378,65 @@
                             case PLAYING:
                                 playGame();
                                 break;
-                            /*
+
+                            case LEVEL_COMPLETE:
+                                levelComplete();
+                                break;
+
                             case OVER:
                                 endGame();
-                                break;*/
+                                break;
                         }
 
                 // and call the render function
                 render();  
+            }
+
+            function levelComplete(){
+                //Make the leveCompleteDisplay visible
+                levelCompleteDisplay.visible = true;
+  
+                //Update the timer that changes the level by one
+                levelChangeTimer++;
+  
+                //Load the next level after 60 frames
+                if(levelChangeTimer === 60){
+                    loadNextLevel();
+                }
+  
+                function loadNextLevel(){
+                    //Reset the timer that changes the level
+                    levelChangeTimer = 0;
+		
+	                //Update the levelCounter by 1
+                    levelCounter++;
+  
+                    //Load the next level if there is one or end the game if there isn't
+                    if(levelCounter < levelMaps.length){
+                        //Clear the arrays of objects
+      
+	                    sprites = [];
+	                    monsters = [];
+	                    boxes = [];
+	                    stars = [];
+	    
+	                    //Reset any gameVariables
+	                    starsCollected = 0;
+	    
+	                    //Make sure the gameWorld size matches the size of the next level
+                        gameWorld.width = levelMaps[levelCounter][0].length * SIZE;
+                        gameWorld.height = levelMaps[levelCounter].length * SIZE;
+	    
+                        //Re-center the camera
+                        camera.x = (gameWorld.x + gameWorld.width / 2) - camera.width / 2;
+                        camera.y = (gameWorld.y + gameWorld.height / 2) - camera.height / 2;
+	    
+                        //Build the maps for the next level
+                        gameState = BUILD_MAP;
+                    } else {
+                        gameState = OVER;
+                    }
+                }
             }
 
             function loadHandler() {
