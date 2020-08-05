@@ -59,7 +59,7 @@
                 [2, 1, 2, 1, 2, 1, 2],
                 [2, 1, 2, 1, 1, 1, 2],
                 [2, 1, 2, 2, 2, 1, 2],
-                [2, 1, 1, 1, 2, 1, 2],
+                [2, 1, 1, 1, 2, 1, 0],
                 [2, 2, 2, 2, 2, 2, 2]
             ];
 
@@ -70,11 +70,11 @@
             // level 1 objects is also 0
             let gameObjects0 = [
                 [0, 0, 0, 0, 0, 0, 0],
-                [0, 3, 0, 0, 0, 0, 0],
+                [0, 3, 0, 0, 0, 5, 0],
                 [0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 5, 0, 0, 4],
                 [0, 0, 0, 0, 0, 0, 0]
             ];
 
@@ -149,6 +149,8 @@
             const FLOOR  = 1;
             const WALL = 2;
             const MUTTY = 3;
+            const GATE = 4;
+            const BONE = 5;
 
             // the size of each tile cell, this is what I need to be able to adapt make this work
             const SIZE = 64;
@@ -170,6 +172,7 @@
                 y: 0,
                 vx: 0,
                 vy: 0,
+                visible: true,
 
                 //Getters
                 centerX: function(){
@@ -190,11 +193,14 @@
             const COLUMNS = map[0].length;
 
             // the number of columns on the tilesheet,  not sure about how this works yet but will observe
-            let tilesheetColumns = 3;
+            let tilesheetColumns = 5;
 
             // the arrays for the game objects
             let sprites = [];
             let walls = [];
+            let gates = [];
+            let bones = [];
+
 
             // now to start the rendering proccess 
             let assetsToLoad = [];
@@ -203,7 +209,7 @@
             // load the tilesheet image
             let image = new Image();
             image.addEventListener("load", loadHandler, false);
-            image.src = "assets/images/mutty-tile-2.png";
+            image.src = "assets/images/mutty-tile-3.png";
             assetsToLoad.push(image);
 
             // to test the rendering I will contstruct basic loadHandler, buildMap and render functions.
@@ -213,7 +219,7 @@
             const LOADING = 0;
             const BUILD_MAP = 1;
             const PLAYING = 2;
-            //const OVER = 3;
+            const OVER = 3;
             const LEVEL_COMPLETE = 4;
             let gameState = LOADING;
 
@@ -416,12 +422,11 @@
                         //Clear the arrays of objects
       
 	                    sprites = [];
-	                    monsters = [];
-	                    boxes = [];
-	                    stars = [];
+	                    walls = [];
+	                    gates = [];
+	                    bones = [];
 	    
 	                    //Reset any gameVariables
-	                    starsCollected = 0;
 	    
 	                    //Make sure the gameWorld size matches the size of the next level
                         gameWorld.width = levelMaps[levelCounter][0].length * SIZE;
@@ -493,6 +498,26 @@
                                     mutty.y = row * SIZE;
                                     sprites.push(mutty);
                                     break;
+                                
+                                case GATE:
+                                    let gate = Object.create(spriteObject);
+                                    gate.sourceX = tilesheetX;
+                                    gate.sourceY = tilesheetY;
+                                    gate.x = column * SIZE;
+                                    gate.y = row * SIZE;
+                                    sprites.push(gate);
+                                    gates.push(gate);
+                                    break;
+                                
+                                case BONE:
+                                    let bone = Object.create(spriteObject);
+                                    bone.sourceX = tilesheetX;
+                                    bone.sourceY = tilesheetY;
+                                    bone.x = column * SIZE;
+                                    bone.y = row * SIZE;
+                                    sprites.push(bone);
+                                    bones.push(bone);
+                                    break;
                             }
                         }
                     }
@@ -534,6 +559,12 @@
                     blockRectangle(mutty, walls[i]);
                 }
 
+                //Check for collisions with gate
+                for(var i = 0; i < gates.length; i++){ 
+                    let gate = monsters[i];
+                    if(hitTestCircle(alien, gate)){
+                    gameState = LEVEL_COMPLETE;
+                }
                 
                 //Scroll the camera
                 if(mutty.x < camera.leftInnerBoundary()){
@@ -563,6 +594,16 @@
                 if(camera.y + camera.height > gameWorld.height){
                     camera.y = gameWorld.height - camera.height;
                 } 
+            }
+
+            function endGame(){
+                //Make the levelCompleteDisplay invisible
+                levelCompleteDisplay.visible = false;
+  
+                //You win if you're on the last level and touch the gate
+                if(levelCounter === levelMaps.length){
+                        youWonDisplay.visible = true;
+                }
             }
 
             // thats the map built need to render it with a render function next
