@@ -38,7 +38,7 @@
             // and the colision js to make the walls solid, I am now attemping to get the levels up and running.
             // Game Map Levels
             // Arrays to store the levelmaps and objects upon loading
-            let levelmaps = [];
+            let levelMaps = [];
             let levelGameObjects = [];
 
             // To get the levels to load in order
@@ -59,12 +59,12 @@
                 [2, 1, 2, 1, 2, 1, 2],
                 [2, 1, 2, 1, 1, 1, 2],
                 [2, 1, 2, 2, 2, 1, 2],
-                [2, 1, 1, 1, 2, 1, 0],
+                [2, 1, 1, 1, 2, 1, 1],
                 [2, 2, 2, 2, 2, 2, 2]
             ];
 
             // push map0 to the levelMaps array
-            levelmaps.push(map0);
+            levelMaps.push(map0);
 
             // game object variable
             // level 1 objects is also 0
@@ -74,7 +74,7 @@
                 [0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 5, 0, 0, 4],
+                [0, 0, 0, 5, 0, 4, 0],
                 [0, 0, 0, 0, 0, 0, 0]
             ];
 
@@ -89,7 +89,7 @@
                 [2, 1, 2, 2, 2, 2, 1, 2, 2, 2, 1, 2],
                 [2, 1, 1, 1, 1, 2, 1, 1, 1, 2, 1, 2],
                 [2, 2, 2, 2, 1, 2, 2, 2, 1, 1, 1, 2],
-                [2, 1, 1, 1, 1, 1. 1, 1, 2, 2, 2, 2],
+                [2, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2],
                 [2, 1, 2, 1, 2, 2, 2, 2, 1, 1, 1, 2],
                 [2, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2],
                 [2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 1, 2],
@@ -101,8 +101,22 @@
             //Push map1 into the leveMaps array
             levelMaps.push(map1);
 
-            // I have yet to complete gameObjects array yet so will leave this empty
-            let gameObjects1 = [];
+            // I have yet to complete gameObjects array yet so will leave this empty, 
+            // array completed now adding
+            let gameObjects1 = [
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 3, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            ];
 
             //Push gameObjects1 into the levelGameObjects array
             levelGameObjects.push(gameObjects1);
@@ -134,11 +148,35 @@
             ];
 
             // push map2 into the levelMaps array
-            levelmaps.push(map2);
+            levelMaps.push(map2);
 
             // once again I have yet to complete this 
+            // completed adding
             // gameObjects map
-            let gameObjects2 = [];
+            let gameObjects2 = [
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5, 0],
+                [0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0],
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+            ];
 
             //Push gameObjects2 into the levelGameObjects array
             levelGameObjects.push(gameObjects2);
@@ -189,8 +227,8 @@
                 },
             };
 
-            const ROWS = map.length;
-            const COLUMNS = map[0].length;
+            let ROWS = map0.length;
+            let COLUMNS = map0[0].length;
 
             // the number of columns on the tilesheet,  not sure about how this works yet but will observe
             let tilesheetColumns = 5;
@@ -227,8 +265,8 @@
             let gameWorld = {
                 x: 0,
                 y: 0,
-                width: map[0].length * SIZE,
-                height: map.length * SIZE,
+                width: map0[0].length * SIZE,
+                height: map0.length * SIZE,
             };
 
             //--- The camera object
@@ -375,7 +413,7 @@
                                 break;
       
                             case BUILD_MAP:
-                                buildMap(levelmaps[levelCounter]);
+                                buildMap(levelMaps[levelCounter]);
                                 buildMap(levelGameObjects[levelCounter]);
                                 //createOtherObjects();
                                 gameState = PLAYING;
@@ -400,7 +438,7 @@
 
             function levelComplete(){
                 //Make the leveCompleteDisplay visible
-                levelCompleteDisplay.visible = true;
+                //levelCompleteDisplay.visible = true;
   
                 //Update the timer that changes the level by one
                 levelChangeTimer++;
@@ -561,9 +599,10 @@
 
                 //Check for collisions with gate
                 for(var i = 0; i < gates.length; i++){ 
-                    let gate = monsters[i];
-                    if(hitTestCircle(alien, gate)){
-                    gameState = LEVEL_COMPLETE;
+                    let gate = gates[i];
+                    if(hitTestCircle(mutty, gate)){
+                        gameState = LEVEL_COMPLETE;
+                    }
                 }
                 
                 //Scroll the camera
