@@ -94,7 +94,7 @@
                 [2, 1, 2, 1, 1, 1, 1, 2, 1, 2, 1, 2],
                 [2, 1, 2, 2, 1, 2, 2, 2, 1, 2, 1, 2],
                 [2, 1, 1, 1, 1, 1, 1, 2, 1, 2, 1, 2],
-                [2, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 2]
+                [2, 1, 2, 2, 1, 2, 1, 1, 1, 2, 1, 2],
                 [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
             ];
 
@@ -227,8 +227,8 @@
                 },
             };
 
-            let ROWS = map0.length;
-            let COLUMNS = map0[0].length;
+            let ROWS = levelMaps[levelCounter].length;
+            let COLUMNS = levelMaps[levelCounter][0].length;
 
             // the number of columns on the tilesheet,  not sure about how this works yet but will observe
             let tilesheetColumns = 5;
@@ -265,8 +265,8 @@
             let gameWorld = {
                 x: 0,
                 y: 0,
-                width: map0[0].length * SIZE,
-                height: map0.length * SIZE,
+                width: levelMaps[levelCounter][0].length * SIZE,
+                height: levelMaps[levelCounter].length * SIZE,
             };
 
             //--- The camera object
