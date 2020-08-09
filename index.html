@@ -227,9 +227,6 @@
                 },
             };
 
-            let ROWS = levelMaps[levelCounter].length;
-            let COLUMNS = levelMaps[levelCounter][0].length;
-
             // the number of columns on the tilesheet,  not sure about how this works yet but will observe
             let tilesheetColumns = 5;
 
@@ -465,8 +462,6 @@
 	                    bones = [];
 	    
 	                    //Reset any gameVariables
-	    
-	                    //Make sure the gameWorld size matches the size of the next level
                         gameWorld.width = levelMaps[levelCounter][0].length * SIZE;
                         gameWorld.height = levelMaps[levelCounter].length * SIZE;
 	    
@@ -500,8 +495,8 @@
 
             // the buildMap function
             function buildMap(levelMap) {
-                for(let row = 0; row < ROWS; row++) {
-                    for(let column = 0; column < COLUMNS; column++) {
+                for(let row = 0; row < levelMaps[levelCounter].length; row++) {
+                    for(let column = 0; column < levelMaps[levelCounter][0].length; column++) {
                         let currentTile = levelMap[row][column];
                         if(currentTile !== EMPTY) {
                             // find the tile's x and y position on the tile sheet
