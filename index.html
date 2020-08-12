@@ -51,6 +51,8 @@
 <body>
     <header>
         <h1>Mutty Maze</h1>
+        <!-- Trigger/Open The Modal -->
+        <button id="btnContact">Contact Us</button>
     </header>
 
     <section class="game-area">
@@ -118,6 +120,29 @@
         </div>
     </section>
     <script src="assets/js/collision.js"></script>
+    <!-- Contact Us modal script-->
+    <script>
+        // Get the modal
+        let modalContact = document.getElementById("contactModal");
+
+        // Get the button that opens the modal
+        let contactButton = document.getElementById("btnContact");
+
+        // The Button that closes the modal
+        let contactSubmit = document.getElementById("contactUs");
+
+        // When the user clicks on the button, open the modal
+        contactButton.onclick = function() {
+            modalContact.style.display = "block";
+        }
+
+        // When the user clicks on Submit, close the modal
+        contactSubmit.onclick = function() {
+            modalContact.style.display = "none";
+        }
+
+
+    </script>
     <script>
 
         (function() {
