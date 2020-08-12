@@ -6,26 +6,117 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <title>Mutty Maze</title>
+
+    <style>
+    /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  /*background-color: rgb(0,0,0);  Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.btnModal {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.btnModal:hover,
+.btnModal:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+    
+    </style>
 </head>
 <body>
     <header>
         <h1>Mutty Maze</h1>
     </header>
-    <canvas width="192" height="192" ></canvas>
-        
-    <div class="controls">
-        <div>
-        <button class="direction" id="up">UP</button>
-        </div>
-        <div>
-        <button class="direction" id="left">LEFT</button>
-        <button class="direction" id="right">RIGHT</button>
-        </div>
-        <div>
-        <button class="direction" id="down">DOWN</button>
-        </div>
-    </div>
 
+    <section class="game-area">
+
+        <!--For both level change and end game, plus contact us I would like to use models-->
+        <!-- so here goes. Ffirst three individual id modal divs-->
+        <!--although I looked at many examples the examples that I am adapting is from w3schools.com-->
+        <!-- Modal -->
+        <div id="endLevelModal" class="modal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>Are YOU ready for the next level?</p>
+                        <button id="nextLevel" type="button" class="btnModal" data-dismiss="modal">Next Level</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="endGameModal" class="modal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>We Hope you enjoyed our little game.</p>
+                        <button id="endGame" type="button" class="btnModal" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="contactModal" class="modal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <p>please fill out the form to let us know what you would next like to see.</p>
+                        <button id="contactUs" type="button" class="btnModal" data-dismiss="modal">Submit</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <canvas width="192" height="192" ></canvas>
+        
+        <div class="controls">
+            <div>
+            <button class="direction" id="up">UP</button>
+            </div>
+            <div>
+            <button class="direction" id="left">LEFT</button>
+            <button class="direction" id="right">RIGHT</button>
+            </div>
+            <div>
+            <button class="direction" id="down">DOWN</button>
+            </div>
+        </div>
+    </section>
     <script src="assets/js/collision.js"></script>
     <script>
 
@@ -630,13 +721,15 @@
                 } 
             }
 
-            function endGame(){
-                //Make the levelCompleteDisplay invisible
-                levelCompleteDisplay.visible = false;
-  
+            function endGame(){  
                 //You win if you're on the last level and touch the gate
                 if(levelCounter === levelMaps.length){
-                        youWonDisplay.visible = true;
+                    let endGameModal = document.getElementById("endGameModal");
+                        function endModal(){
+                            endGameModal.style.display = "visble";
+                        }
+                    let btnEndGame = document.getElementById("endGame");
+
                 }
             }
 
