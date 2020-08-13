@@ -51,6 +51,8 @@
 <body>
     <header>
         <h1>Mutty Maze</h1>
+        <!--display the timer-->
+        <p id="timerOutput"></p>
         <!-- Trigger/Open The Modal -->
         <button id="btnContact">Contact Us</button>
     </header>
@@ -105,6 +107,10 @@
 
 
         <canvas width="192" height="192" ></canvas>
+
+        <div>
+            <p id="collectOutput"></p>
+        </div>
         
         <div class="controls">
             <div>
@@ -150,6 +156,10 @@
             let canvas = document.querySelector("canvas");
             let drawingSurface = canvas.getContext("2d");
 
+            // to display timer and collected bones
+            let timeDisplay = document.querySelector("#timerOutput");
+            let boneDisplay = document.querySelector("#collectOutput");
+
             // After I managed to get the maze to display, Mutty and the camera to move and scroll;
             // and the colision js to make the walls solid, I am now attemping to get the levels up and running.
             // Game Map Levels
@@ -164,7 +174,8 @@
             // A level shnge counter
             // This is from "foundation game design " that initally I will need to get the levels working but
             // I would like a different transition between levels
-            let levelChangeTimer = 0;
+            //let levelChangeTimer = 0;
+            // now that I have the modal level transition I can comment this out
 
             
             // game map variables
@@ -365,6 +376,14 @@
 
             // to test the rendering I will contstruct basic loadHandler, buildMap and render functions.
             // This did not work so I am adapting the update from the book to the update function.
+            
+
+            //setting up variables for collecting bones
+            let bonesCollected = 0;
+
+            //variables to display timer and collected bones
+            let timerMessage = 00;
+            let collectedMessage = 0;
             
             //Game states
             const LOADING = 0;
@@ -585,7 +604,7 @@
   
                 function loadNextLevel(){
                     //Reset the timer that changes the level
-                    levelChangeTimer = 0;
+                    //levelChangeTimer = 0;
 		
 	                //Update the levelCounter by 1
                     levelCounter++;
@@ -599,7 +618,9 @@
 	                    gates = [];
 	                    bones = [];
 	    
-	                    //Reset any gameVariables
+                        //Reset any gameVariables
+                        bonesCollected = 0;
+
                         gameWorld.width = levelMaps[levelCounter][0].length * SIZE;
                         gameWorld.height = levelMaps[levelCounter].length * SIZE;
 	    
@@ -728,6 +749,19 @@
                 //Collisions with walls
                 for(let i = 0; i < walls.length; i++){
                     blockRectangle(mutty, walls[i]);
+                }
+
+                //collecting bones
+                //collisions with bones turns bone.visible = false
+                for(let i = 0; i < bones.length; i++){
+                    let star = stars[i];
+                    if(hitTestCircle(mutty, star) && star.visible){
+                        star.visible = false;
+                        bonesCollected++;
+
+                        //I need to display bones collected here.
+                        //this will be a html display outlet
+                    }
                 }
 
                 //Check for collisions with gate
