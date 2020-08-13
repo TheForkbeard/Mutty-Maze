@@ -552,6 +552,7 @@
             function levelComplete(){
                 //Make the leveCompleteDisplay visible
                 //levelCompleteDisplay.visible = true;
+                /*
   
                 //Update the timer that changes the level by one
                 levelChangeTimer++;
@@ -559,7 +560,28 @@
                 //Load the next level after 60 frames
                 if(levelChangeTimer === 60){
                     loadNextLevel();
+                }*/
+
+                // changing put the timer with a modal
+                // creating the modal vatiable
+                let levelModal = document.getElementById("endLevelModal");
+                
+                //creating the next level button
+                let levelReady = document.getElementById("nextLevel");
+
+                // calling the level transition function
+                transLevel();
+
+                //this should open the modal
+                function transLevel() {
+                    levelModal.style.display = "block";
                 }
+
+                levelReady.onclick = function() {
+                    levelModal.style.display = "none";
+                    loadNextLevel()
+                }
+
   
                 function loadNextLevel(){
                     //Reset the timer that changes the level
@@ -749,11 +771,18 @@
             function endGame(){  
                 //You win if you're on the last level and touch the gate
                 if(levelCounter === levelMaps.length){
-                    let endGameModal = document.getElementById("endGameModal");
-                        function endModal(){
-                            endGameModal.style.display = "visble";
-                        }
+                    let modalEndGame = document.getElementById("endGameModal");
+
                     let btnEndGame = document.getElementById("endGame");
+
+                    endModal()
+                    function endModal(){
+                        modalEndGame.style.display = "block";
+                    }
+                    
+                    btnEndGame.onclick = function() {
+                        modalEndGame.style.display = "none";
+                    }
 
                 }
             }
