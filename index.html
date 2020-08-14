@@ -157,8 +157,8 @@
             let drawingSurface = canvas.getContext("2d");
 
             // to display timer and collected bones
-            let timeDisplay = document.querySelector("#timerOutput");
-            let boneDisplay = document.querySelector("#collectOutput");
+            let timerOutput = document.querySelector("#timerOutput");
+            let collectOutput = document.querySelector("#collectOutput");
 
             // After I managed to get the maze to display, Mutty and the camera to move and scroll;
             // and the colision js to make the walls solid, I am now attemping to get the levels up and running.
@@ -353,6 +353,28 @@
                     return this.height / 2;
                 },
             };
+
+            //--- The gameTimer object
+
+            let gameTimer = {
+                time: 0,
+                interval: undefined,
+  
+                start: function(){
+                    let self = this;
+	                this.interval = setInterval(function(){self.tick();}, 1000);
+                },
+                tick: function(){
+                    this.time++;
+                },
+                stop: function(){
+                    clearInterval(this.interval);
+                },
+                reset: function(){
+                    this.time = 0;
+                }
+            };
+
 
             // the number of columns on the tilesheet,  not sure about how this works yet but will observe
             let tilesheetColumns = 5;
@@ -714,6 +736,15 @@
                         }
                     }
                 }
+
+                //Display the gameTimer
+                timeDisplay.text = gameTimer.time;
+  
+                //This modification adds an extra "0" to the time
+                //if the time is less than 10
+                if(gameTimer.time < 10){
+                    timeDisplay.text = "0" + gameTimer.time;
+                }
             }
 
             function playGame(){ 
@@ -761,7 +792,7 @@
 
                         //I need to display bones collected here.
                         //this will be a html display outlet
-                    }
+                        collectedMessage = "You have Collected " + bonesCollected + " Bones."                }
                 }
 
                 //Check for collisions with gate
@@ -846,6 +877,14 @@
                         }
                     }
                 drawingSurface.restore();
+
+                // I am using innerHTML to display timer and boes collected
+                // starting withe the timer
+                timerOutput.innerHTML = timerMessage;
+
+                // Then the Collected bones message
+
+                collectOutput.innerHTML = collectedMessage;
             }
         }());
 
