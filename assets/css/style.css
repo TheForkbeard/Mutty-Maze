@@ -1,3 +1,22 @@
+/* Header */
+/* Navbar */
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    padding-left: 0;
+    padding-right: 0;
+}
+.navbar {    
+    margin-bottom: 0;
+    width: 100%;
+    background-color: #fada22;
+    border: 0;
+}
+
+
 /* The Modal (background) */
 .modal {
   display: none; /* Hidden by default */
@@ -34,4 +53,67 @@
   color: black;
   text-decoration: none;
   cursor: pointer;
+}
+
+section {
+    padding-top: 75px;
+    width: 100%;
+    background-color: #f3e282;
+    border: 0;
+}
+
+.container-fluid {
+    margin: 0;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* footer */
+footer {
+    background-color: #fada22;
+    color: #ffffff;
+    min-height: 75px;
+    margin: 0;
+}
+.blockquote-footer {
+    background-color: #ffffff;
+}
+.social-links {
+    text-align: center;
+    padding-top: 15px;
+}
+.social-links li a i {
+    width: 45px;
+    height: 45px;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 20px;
+    line-height: 20px;
+    text-align: center;
+    color: #fafafa;
+    background: #8f8f8f;
+    transition: all 0.35s ease-in-out;
+    -moz-transition: all 0.35s ease-in-out;
+    -webkit-transition: all 0.35s ease-in-out;
+    -o-transition: all 0.35s ease-in-out;
+}
+.social-links li a i:hover {
+    background: #f3e282;
+}
+.credits {
+    text-align: center;
+    padding: 15px;
+}
+.credits a {
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: bold;
+}
+.dropdown-menu {
+    background-color: #fada22;
+}
+.dropdown-menu a {
+    color: #ffffff;
+}
+.copyright {
+    padding-top: 25px;
 }

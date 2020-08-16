@@ -15,11 +15,13 @@
 </head>
 <body>
     <header>
-        <h1>Mutty Maze</h1>
+        <nav class="navbar">
+        <h3>Mutty Maze</h3>
         <!--display the timer-->
         <p id="timerOutput"></p>
         <!-- Trigger/Open The Modal -->
         <button id="btnContact">Contact Us</button>
+        </nav>
     </header>
 
     <section class="game-area">
@@ -69,27 +71,33 @@
 
             </div>
         </div>
-
-        <div>
-            <canvas width="192" height="192" ></canvas>
-        </div>
-        <div>
-            <p id="collectOutput"></p>
+        <article class="container-fluid">
+        <!--now some "TWICKERY" to make the game appear to be size responsive without changing size-->
+            <div class="row">
+                <div class="d-none d-lg-block col-lg-4"></div>
+                <div class="col-12 col-md-6 col-lg-3">
+                    <canvas width="192" height="192" ></canvas>
+                </div>
+                <div>
+                    <p id="collectOutput"></p>
         
         
-            <div class="controls">
-                <div>
-                    <button class="direction" id="up">UP</button>
+                    <div class="controls">
+                        <div>
+                            <button class="direction" id="up">UP</button>
+                        </div>
+                        <div>
+                            <button class="direction" id="left">LEFT</button>
+                            <button class="direction" id="right">RIGHT</button>
+                        </div>
+                        <div>
+                            <button class="direction" id="down">DOWN</button>
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <button class="direction" id="left">LEFT</button>
-                    <button class="direction" id="right">RIGHT</button>
-                </div>
-                <div>
-                    <button class="direction" id="down">DOWN</button>
-                </div>
+                <div class="d-none d-lg-block col-lg-4"></div>
             </div>
-        </div>
+        </article>
     </section>
     <!--This footer is adapted from the Resume lessons-->
     <footer class="container-fluid">
