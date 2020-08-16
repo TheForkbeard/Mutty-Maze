@@ -64,7 +64,15 @@
                 <!-- Modal content-->
                 <div class="modal-content">
                     <div class="modal-body">
+                        <h3>Contact Us</h3>
                         <p>please fill out the form to let us know what you would next like to see.</p>
+                        <label for="fname">First Name:</label>
+                        <input class="text-input" type="text" name="first_name" id="fname" placeholder="First Name" required>
+                        <label for="lname">Last Name:</label>
+                        <input class="text-input" type="text" name="last_name" id="lname" placeholder="Last Name" required>
+                        <label for="email">Email Address:</label>
+                        <input class="text-input" type="email" name="email_address" id="email" placeholder="Email Address" required>
+                        <textarea rows="5" name="user-ideas" id="user-ideas" class="form-control" placeholder="Your Thoughts" required></textarea>
                         <button id="contactUs" type="button" class="btnModal" data-dismiss="modal">Submit</button>
                     </div>
                 </div>
