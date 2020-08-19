@@ -14,6 +14,22 @@ contactButton.onclick = function() {
 
 // When the user clicks on Submit, close the modal
 contactSubmit.onclick = function() {
-    onsubmit= sendMail(emailForm);
+    sendMail();
     modalContact.style.display = "none";
+}
+
+function sendMail(emailForm) {
+    emailjs.send("gmail", "mutty_maze_contact", {
+        "from_name": emailForm.name.value,
+        "from_email": emailForm.emailaddress.value,
+        "suggest_mutty": emailForm.muttysuggest.value
+    }).then(
+        function(response) {
+            console.log("SUCCESS", response);
+        },
+        function(error) {
+            console.log("FAILED", error);
+        }
+    );
+    return false;
 }

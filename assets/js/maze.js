@@ -240,7 +240,7 @@
             // load the tilesheet image
             let image = new Image();
             image.addEventListener("load", loadHandler, false);
-            image.src = "assets/images/mutty-tile-3.png";
+            image.src = "assets/images/mutty-tile-4.png";
             assetsToLoad.push(image);
 
             // to test the rendering I will contstruct basic loadHandler, buildMap and render functions.
