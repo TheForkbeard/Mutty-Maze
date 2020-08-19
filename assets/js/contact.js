@@ -14,5 +14,6 @@ contactButton.onclick = function() {
 
 // When the user clicks on Submit, close the modal
 contactSubmit.onclick = function() {
+    onsubmit= sendMail(this);
     modalContact.style.display = "none";
 }
